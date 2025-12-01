@@ -1,0 +1,92 @@
+---
+# Fill in the fields below to create a basic custom agent for your repository.
+# The Copilot CLI can be used for local testing: https://gh.io/customagents/cli
+# To make this agent available, merge this file into the default repository branch.
+# For format details, see: https://gh.io/customagents/config
+
+name:
+description:
+---
+
+# My Agent
+
+Describe what your agent does here...connectedagents-ai
+openai-apps-sdk-examples
+
+Type / to search
+Code
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Files
+Go to file
+t
+.github
+pizzaz_server_node
+pizzaz_server_python
+solar-system_server_python
+README.md
+main.py
+requirements.txt
+src
+.gitignore
+.pre-commit-config.yaml
+LICENSE
+README.md
+build-all.mts
+dev-all.mts
+package.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
+tailwind.config.ts
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite-env.d.ts
+vite.config.mts
+vite.host.config.mts
+openai-apps-sdk-examples/solar-system_server_python
+/README.md
+katia-openaibryant-openai
+katia-openai
+and
+bryant-openai
+initial commit
+5fb4ae5
+ · 
+last month
+
+Preview
+
+Code
+
+Blame
+46 lines (33 loc) · 1.47 KB
+Solar system MCP server (Python)
+This directory packages a Python implementation of the solar-system demo server using the official Model Context Protocol FastMCP helper. It mirrors the widget experience shipped in this repository and lets you drive the 3D solar system UI from ChatGPT or the MCP Inspector.
+
+Prerequisites
+Python 3.10+
+A virtual environment (recommended)
+Installation
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+The requirements pin the official mcp distribution with its FastAPI extra. If you previously installed the unrelated modelcontextprotocol package, uninstall it first to avoid import conflicts.
+
+Run the server
+python main.py
+This boots a FastAPI app with uvicorn on http://127.0.0.1:8000 (equivalently uvicorn solar-system_server_python.main:app --port 8000). The server exposes streaming endpoints compatible with the MCP Inspector and ChatGPT connectors:
+
+GET /mcp provides the SSE stream.
+POST /mcp/messages?sessionId=... receives follow-up messages for a session.
+Each tool call returns a small JSON payload describing the requested planet plus metadata that embeds the solar-system widget, so the Apps SDK can render the 3D experience inline.
+
+Next steps
+Expand the schema with additional celestial bodies or mission telemetry.
+Source live ephemeris data to position planets in real time.
+Gate access with authentication before exposing the widget in production.
